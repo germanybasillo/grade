@@ -8,6 +8,7 @@
                 <div class="_form-08-main">
                     <div class="_form-08-head">
                         <h2>Welcome Back</h2>
+                        <a href="/"><p style="font-weight: bold">GS</p></a>
                     </div>
 
                     <div class="form-group">

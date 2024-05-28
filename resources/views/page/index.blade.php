@@ -4,14 +4,13 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
-    <title> Drop Down Sidebar Menu | CodingLab </title>
+    <title> GRADING SYSTEM </title>
     <link rel="stylesheet" href="style.css">
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
-@include('partials.message')
   <div class="sidebar close">
     <div class="logo-details">
       <i class='bx bxl-c-plus-plus'></i>
@@ -68,8 +67,8 @@
   </li>
 </ul>
   </div>
-  @include('partials.message')
   <section class="home-section">
+    @include('partials.message')
     <div class="home-content">
       <i class='bx bx-menu' ></i>
       <span class="text">GRADING SYSTEM</span>

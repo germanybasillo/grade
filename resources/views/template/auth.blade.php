@@ -13,8 +13,8 @@
     <title>Form</title>
   </head>
   <body>
-    @include('partials.message')
     <section class="form-08">
+      @include('partials.message')
       @yield('content')
     </section>
   </body>
