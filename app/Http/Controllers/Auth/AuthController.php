@@ -14,7 +14,7 @@ class AuthController extends Controller
     function index()
     {
         if (Auth::check()) {
-            return redirect('/dashboard')->with('info', "Please logout first");
+            return redirect('/index')->with('info', "Please logout first");
         }
         return view('auth.login');
     }
@@ -22,7 +22,7 @@ class AuthController extends Controller
     function register()
     {
         if (Auth::check()) {
-            return redirect('/dashboard')->with('info', "Please logout first");
+            return redirect('/index')->with('info', "Please logout first");
         }
         return view('auth.register');
     }
@@ -44,7 +44,7 @@ class AuthController extends Controller
     ]);
 
     Auth::login($user);
-    return redirect('/dashboard')->with('success', "Welcome, $user->name!");
+    return redirect('/index')->with('success', "Welcome, $user->name!");
 }
 
 
@@ -60,7 +60,7 @@ function validate_login(Request $request)
     if(Auth::attempt($credentials))
     {
         $user = Auth::user();
-        return redirect('/dashboard')->with('success', "Welcome back, $user->name!");
+        return redirect('/index')->with('success', "Welcome back, $user->name!");
     }
 
     return redirect('/login')->with('error', 'Login details are not valid');
