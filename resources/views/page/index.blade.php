@@ -17,17 +17,21 @@
       <span class="logo_name">GS</span>
     </div>
     <ul class="nav-links">
+      @auth
       <li>
         <a href="#">
           <i class='bx bx-grid-alt' ></i>
           <span class="link_name">Dashboard</span>
         </a>
+        @endauth
         <ul class="sub-menu blank">
             @auth
             @if(Auth::user()->user_type == 'teacher')
               <li><a class="link_name" href="{{ route('dashboard') }}">Teacher Dashboard</a></li>
+              <li><a class="link_name" href="{{ route('inbox') }}">Inbox</a></li>
             @elseif(Auth::user()->user_type == 'student')
               <li><a class="link_name" href="{{ route('dashboard') }}">Student Dashboard</a></li>
+              <li><a class="link_name" href="{{ route('notification') }}">Notification</a></li>
             @endif
           @endauth
         </ul>
@@ -73,8 +77,7 @@
       <i class='bx bx-menu' ></i>
       <span class="text">GRADING SYSTEM</span>
     </div>
-  </section>
-
+      
   <script src="script.js"></script>
 
 </body>
