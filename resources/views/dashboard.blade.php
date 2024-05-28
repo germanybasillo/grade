@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('content')
-
+@include('partials.message')
 <div class="card">
 	<div class="card-header">Dashboard</div>
 	<div class="card-body">

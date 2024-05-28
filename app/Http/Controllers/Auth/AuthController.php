@@ -14,71 +14,65 @@ class AuthController extends Controller
     function index()
     {
         if (Auth::check()) {
-            return redirect('dashboard');
+            return redirect('/dashboard')->with('info', "Please logout first");
         }
-        return view('login');
+        return view('auth.login');
     }
 
     function register()
     {
         if (Auth::check()) {
-            return redirect('dashboard');
+            return redirect('/dashboard')->with('info', "Please logout first");
         }
-        return view('register');
+        return view('auth.register');
     }
 
     function validate_register(Request $request)
+{
+    $request->validate([
+        'name'         =>   'required',
+        'email'        =>   'required|email|unique:users',
+        'password'     =>   'required|min:6'
+    ]);
+
+    $data = $request->all();
+
+    $user = User::create([
+        'name'  =>  $data['name'],
+        'email' =>  $data['email'],
+        'password' => Hash::make($data['password'])
+    ]);
+
+    Auth::login($user);
+    return redirect('/dashboard')->with('success', "Welcome, $user->name!");
+}
+
+
+function validate_login(Request $request)
+{
+    $request->validate([
+        'email' => 'required',
+        'password' => 'required'
+    ]);
+
+    $credentials = $request->only('email', 'password');
+    
+    if(Auth::attempt($credentials))
     {
-        $request->validate([
-            'name'         =>   'required',
-            'email'        =>   'required|email|unique:users',
-            'password'     =>   'required|min:6'
-        ]);
-
-        $data = $request->all();
-
-        User::create([
-            'name'  =>  $data['name'],
-            'email' =>  $data['email'],
-            'password' => Hash::make($data['password'])
-        ]);
-
-        return redirect('login')->with('success', 'Registration Completed, now you can login');
+        $user = Auth::user();
+        return redirect('/dashboard')->with('success', "Welcome back, $user->name!");
     }
 
-    function validate_login(Request $request)
-    {
-        $request->validate([
-            'email' =>  'required',
-            'password'  =>  'required'
-        ]);
-
-        $credentials = $request->only('email', 'password');
-
-        if(Auth::attempt($credentials))
-        {
-            return redirect('dashboard');
-        }
-
-        return redirect('login')->with('success', 'Login details are not valid');
-    }
-
-    function dashboard()
-    {
-        if(Auth::check())
-        {
-            return view('dashboard');
-        }
-
-        return redirect('login')->with('success', 'you are not allowed to access');
+    return redirect('/login')->with('error', 'Login details are not valid');
     }
 
     function logout()
     {
+        $user = Auth::user();
         Session::flush();
-
         Auth::logout();
-
-        return Redirect('login');
+        if ($user) {
+            return redirect('/login')->with('success', "You can come back anytime anywhere, $user->name!");
+        } 
     }
 }

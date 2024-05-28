@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Page\PageController;
 Route::get('/', function () {
     return view('welcome');
 });
-
 
 Route::controller(AuthController::class)->group(function(){
     Route::get('/login', 'index')->name('login');
@@ -13,5 +13,8 @@ Route::controller(AuthController::class)->group(function(){
     Route::get('/logout', 'logout')->name('logout');
     Route::post('/validate_register', 'validate_register')->name('validate_register');
     Route::post('/validate_login', 'validate_login')->name('validate_login');
+});
+
+Route::controller(PageController::class)->group(function(){
     Route::get('/dashboard', 'dashboard')->name('dashboard');
 });
