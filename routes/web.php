@@ -17,4 +17,5 @@ Route::controller(AuthController::class)->group(function(){
 
 Route::controller(PageController::class)->group(function(){
     Route::get('/dashboard', 'dashboard')->name('dashboard');
+    Route::get('/index', 'index')->name('page.index');
 });

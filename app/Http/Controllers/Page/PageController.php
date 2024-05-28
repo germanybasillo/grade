@@ -18,4 +18,14 @@ class PageController extends Controller
 
         return redirect('/login')->with('fail', "pag create sa og account sumbagon konang baba nimo ron");
     }
+
+    function index()
+    {
+        if(Auth::check())
+        {
+            return redirect('/dashboard')->with('info', "Please logout first");
+        }
+
+        return redirect('/login')->with('fail', "pag create sa og account sumbagon konang baba nimo ron");
+    }
 }

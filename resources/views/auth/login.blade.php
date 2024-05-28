@@ -1,6 +1,5 @@
 @extends('template.auth')
 @section('content')
-@include('partials.message')
 <div class="container">
     <div class="row">
         <div class="col-12">
