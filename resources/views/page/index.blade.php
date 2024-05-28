@@ -24,8 +24,13 @@
           <span class="link_name">Dashboard</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Teacher</a></li>
-          <li><a class="link_name" href="#">Student</a></li>
+            @auth
+            @if(Auth::user()->user_type == 'teacher')
+              <li><a class="link_name" href="{{ route('teacher.dashboard') }}">Teacher Dashboard</a></li>
+            @elseif(Auth::user()->user_type == 'student')
+              <li><a class="link_name" href="{{ route('student.dashboard') }}">Student Dashboard</a></li>
+            @endif
+          @endauth
         </ul>
       </li>
       <li>
@@ -50,8 +55,13 @@
         <img src="image/profile.jpg" alt="profileImg">
       </div>
       <div class="name-job">
-        <div class="profile_name">Prem Shahi</div>
-        <div class="job">Web Desginer</div>
+        @auth
+        <div class="profile_name">{{ Auth::user()->name }}</div>
+        <div class="job">{{ ucfirst(Auth::user()->user_type) }}</div>
+        @else
+        <div class="profile_name">Guest</div>
+        <div class="job">Please login</div>
+        @endauth
       </div>
       <i class='bx bx-log-out' ></i>
     </div>

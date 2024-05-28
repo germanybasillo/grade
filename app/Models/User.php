@@ -14,5 +14,6 @@ class User extends AuthenticatableUser implements Authenticatable
         'name',
         'email',
         'password',
+        'user_type',
     ];
 }

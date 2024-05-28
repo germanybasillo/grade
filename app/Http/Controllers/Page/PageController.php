@@ -8,18 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
-    
-    function dashboard()
-    {
-        if(Auth::check())
-        {
-            return redirect('/index')->with('info', "Please logout first");
-        }
-
-        return redirect('/login')->with('fail', "pag create sa og account sumbagon konang baba nimo ron");
-    }
-
-    function index()
+        function index()
     {
         if(Auth::check())
         {

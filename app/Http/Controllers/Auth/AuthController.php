@@ -28,24 +28,27 @@ class AuthController extends Controller
     }
 
     function validate_register(Request $request)
-{
-    $request->validate([
-        'name'         =>   'required',
-        'email'        =>   'required|email|unique:users',
-        'password'     =>   'required|min:6'
-    ]);
-
-    $data = $request->all();
-
-    $user = User::create([
-        'name'  =>  $data['name'],
-        'email' =>  $data['email'],
-        'password' => Hash::make($data['password'])
-    ]);
-
-    Auth::login($user);
-    return redirect('/index')->with('success', "Welcome, $user->name!");
-}
+    {
+        $request->validate([
+            'name'         =>   'required',
+            'email'        =>   'required|email|unique:users',
+            'password'     =>   'required|min:6',
+            'user_type'    =>   'required|in:teacher,student'
+        ]);
+    
+        $data = $request->all();
+    
+        $user = User::create([
+            'name'      =>  $data['name'],
+            'email'     =>  $data['email'],
+            'password'  =>  Hash::make($data['password']),
+            'user_type' =>  $data['user_type']
+        ]);
+    
+        Auth::login($user);
+        return redirect('/index')->with('success', "Welcome, $user->name!");
+    }
+    
 
 
 function validate_login(Request $request)
