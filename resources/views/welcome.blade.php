@@ -10,7 +10,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
-    @include('partials.message')
+@include('partials.message')
   <div class="sidebar close">
     <div class="logo-details">
       <i class='bx bxl-c-plus-plus'></i>
@@ -24,14 +24,6 @@
         </a>
         <ul class="sub-menu blank">
           <li><a class="link_name" href="#">Teacher</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-grid-alt' ></i>
-          <span class="link_name">Dashboard</span>
-        </a>
-        <ul class="sub-menu blank">
           <li><a class="link_name" href="#">Student</a></li>
         </ul>
       </li>
@@ -67,7 +59,10 @@
   </div>
 
   <section class="home-section">
-    @yield('content')
+    <div class="home-content">
+      <i class='bx bx-menu' ></i>
+      <span class="text">GRADING SYSTEM</span>
+    </div>
   </section>
 
   <script src="script.js"></script>
