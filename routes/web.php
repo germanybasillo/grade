@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Page\PageController;
+use App\Http\Controllers\StudentController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -19,3 +20,5 @@ Route::controller(PageController::class)->group(function(){
     Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::get('/index', 'index')->name('page.index');
 });
+
+Route::resource("/student", StudentController::class);
