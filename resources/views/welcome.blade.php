@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
 <html lang="en" dir="ltr">
@@ -10,28 +11,29 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
-@include('partials.message')
   <div class="sidebar close">
     <div class="logo-details">
       <i class='bx bxl-c-plus-plus'></i>
       <span class="logo_name">GS</span>
     </div>
     <ul class="nav-links">
-      {{-- <li>
+      @auth
+      <li>
         <a href="#">
           <i class='bx bx-grid-alt' ></i>
           <span class="link_name">Dashboard</span>
         </a>
-        <ul class="sub-menu blank">
-          @auth
-          @if(Auth::user()->user_type == 'teacher')
-            <li><a class="link_name" href="{{ route('teacher.dashboard') }}">Teacher Dashboard</a></li>
-          @elseif(Auth::user()->user_type == 'student')
-            <li><a class="link_name" href="{{ route('student.dashboard') }}">Student Dashboard</a></li>
-          @endif
         @endauth
+        <ul class="sub-menu blank">
+            @auth
+            @if(Auth::user()->user_type == 'teacher')
+              <li><a class="link_name" href="{{ route('dashboard') }}">Teacher Dashboard</a></li>
+            @elseif(Auth::user()->user_type == 'student')
+              <li><a class="link_name" href="{{ route('dashboard') }}">Student Dashboard</a></li>
+            @endif
+          @endauth
         </ul>
-      </li> --}}
+      </li>
       <li>
         <div class="iocn-link">
           <a href="#">
@@ -67,14 +69,13 @@
   </li>
 </ul>
   </div>
-
+  @include('partials.message')
   <section class="home-section">
     <div class="home-content">
       <i class='bx bx-menu' ></i>
       <span class="text">GRADING SYSTEM</span>
     </div>
   </section>
-
   <script src="script.js"></script>
 
 </body>

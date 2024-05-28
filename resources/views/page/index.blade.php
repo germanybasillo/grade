@@ -26,9 +26,9 @@
         <ul class="sub-menu blank">
             @auth
             @if(Auth::user()->user_type == 'teacher')
-              <li><a class="link_name" href="{{ route('teacher.dashboard') }}">Teacher Dashboard</a></li>
+              <li><a class="link_name" href="{{ route('dashboard') }}">Teacher Dashboard</a></li>
             @elseif(Auth::user()->user_type == 'student')
-              <li><a class="link_name" href="{{ route('student.dashboard') }}">Student Dashboard</a></li>
+              <li><a class="link_name" href="{{ route('dashboard') }}">Student Dashboard</a></li>
             @endif
           @endauth
         </ul>
@@ -68,11 +68,11 @@
   </li>
 </ul>
   </div>
-
+  @include('partials.message')
   <section class="home-section">
     <div class="home-content">
       <i class='bx bx-menu' ></i>
-      <span class="text">GRADING SYSTEM</span>
+      <span class="text">GRADING SYSTEM</span> @include('partials.message')
     </div>
   </section>
 
